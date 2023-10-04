@@ -1,0 +1,123 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .size {
+            width: 100px;
+            height: 30px;
+            background-color: orange;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>This is heading</h1>
+    <button class='size' id='myButton'>name</button>
+
+    <script>
+        const button = document.getElementById('myButton');
+
+        button.addEventListener('click', () => {
+            // Change the background color to aqua
+            button.style.backgroundColor = 'aqua';
+
+            // After 2 seconds, revert the background color to the original
+            setTimeout(() => {
+                button.style.backgroundColor = 'orange';
+            }, 5000);
+        });
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <title>Ping Requests</title>
+    <style>
+        body {
+    text-align: center;
+    background-color: #283149;
+        }
+        .pressed {
+            box-shadow: 0 3px 4px 0 #DBEDF3;
+            opacity: 0.5;
+        }
+        h1 {
+            font-size: 5rem;
+            color: #DBEDF3;
+            font-family: "Arvo", cursive;
+            text-shadow: 3px 0 #DA0463;
+        
+        }
+        .btn{
+            outline: none;
+        border: 10px solid #404B69;
+        font-size: 1rem;
+        font-family: 'Arvo', cursive;
+        line-height: 2;
+        font-weight: 900;
+        color: #DA0463;
+        text-shadow: 3px 0 #DBEDF3;
+        border-radius: 15px;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        margin: 10px;
+        background-color: white;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+</head>
+<body>
+    <h1>Ping Lookup</h1>
+    <hr>
+    <button class="btn">ip 2</button>
+    <button class="btn">ip 3</button>
+    <div id="pingResults"></div>
+    {% for index, row in data.iterrows %}
+            <button class="btn">{{ row.name }}</button>
+        {% endfor %}
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>IP Address</th>
+            <th>Email ID</th>
+            <th>Link for Log</th>
+        </tr>
+        {% for index, row in data.iterrows %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.ip_address }}</td>
+            <td>{{ row.email_id }}</td>
+            <td>{{ row.link_for_log }}</td>
+        </tr>
+        {% endfor %}
+    <hr>
+    <!-- <footer>
+        &copy; Copyright 2022 by Kanishk. All Rights Reserved.
+    </footer> -->
+    <script>
+        for (var i =0;i<document.querySelectorAll(".btn").length;i++){
+            document.querySelectorAll(".btn")[i].addEventListener("click",handleclick);    
+        }
+        function handleclick(color){
+            var activebutton = this; // 'this' refers to the clicked button
+            activebutton.style.backgroundColor = color; // Change the color here
+
+            setTimeout(function () {
+                activebutton.style.backgroundColor = "white"; // Reset to the original color
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

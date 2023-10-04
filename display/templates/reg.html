@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Ping Requests</title>
+    <style>
+        body {
+
+            /* text-align: center; */
+            background-color: rgb(255, 255, 255);
+        }
+        .pressed {
+            /* border: 10px solid #202020;
+            background-color: #000000; */
+            /* box-shadow: 0 3px 4px 0 #DBEDF3; */
+            /* opacity: 0.5; */
+        }
+        h4 {
+            /* text-align: center; */
+            margin-left: 15%;
+            font-size: 3rem;
+            color: rgb(11, 0, 0);
+            font-family: 'Times New Roman', Times, serif;
+            /* text-shadow: 2px 0 rgb(137, 136, 136); */
+        }
+        h2{
+            font-size: 3rem;
+            color: rgb(11, 0, 0);
+            font-family: 'Times New Roman', Times, serif;
+            height: 300px;
+            width: 600px;
+            position: absolute;
+            top: 0;
+            left: 67%;
+            margin-top: 5%; /* Adjust as needed for the desired top margin */
+            margin-bottom: 80px;
+        }
+        h3{
+            font-size: 3rem;
+            color: rgb(11, 0, 0);
+            font-family: 'Times New Roman', Times, serif;
+            height: 300px;
+            width: 600px;
+            position: absolute;
+            top: 0;
+            left: 67%;
+            margin-top: 31%; /* Adjust as needed for the desired top margin */
+            margin-bottom: 80px;
+        }
+        /* .btn {
+            outline: none;
+            border: 3px solid #ffffff;
+            font-size: 0.85rem;
+            font-family: 'Arvo', cursive;
+            line-height: 2;
+            font-weight: 500;
+            color: rgb(231, 227, 227);
+            /* text-shadow: 1px 0 #DBEDF3; 
+            border-radius: 15px;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            margin: 10px;
+            background-color: white;
+            align-items: start;
+        } */
+        .bttn{
+            border: 2px solid black ;
+            /* border: 3px solid #000000; */
+            font-size: 0.6rem;
+            font-family: 'Arvo', cursive;
+            line-height: 2;
+            font-weight: 500;
+            color: rgb(255, 255, 255);
+            /* text-shadow: 1px 0 #DBEDF3; */
+            border-radius: 15px;
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            margin: 10px;
+            background-color: rgb(0, 0, 0);
+            align-items: start;
+            cursor: move;
+        }
+        
+        th,td{
+            border:solid 1px grey;
+            /*color: white;*/
+        }
+        hr{
+            color: rgb(0, 0, 0);
+        }
+        .hidden {
+            display: none;
+        }
+        .navbar-brand{
+            font-size: 2rem;
+        }
+        .btn.dragging {
+            opacity: .5;
+        }
+        .container {
+      border: 2px solid black;
+      height: 300px;
+      width: 600px;
+      position: relative;
+      margin-left: 4%;
+      margin-bottom: 10px;
+    }
+    .container1 {
+  /* border: 2px solid black; */
+  height: 300px;
+  width: 600px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-top: 135px; /* Adjust as needed for the desired top margin */
+  margin-bottom: 10px;
+}
+.container2 {
+  border: 2px solid black;
+  height: 300px;
+  width: 600px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-top: 35.5%; /* Adjust as needed for the desired top margin */
+  margin-bottom: 10px;
+}
+.container3 {
+  /* border: 2px solid black; */
+  height: 300px;
+  width: 600px;
+  position: absolute;
+  /* top: 0; */
+  left: 0%;
+  /* margin-top: 6px; Adjust as needed for the desired top margin */
+  margin-bottom: 10px;
+}
+.green{
+            background-color: green;
+        }
+        .red{
+            background-color: red;
+        }
+        #emailForm
+        {
+            margin-bottom: 40%;
+            margin-top: -411px;
+            text-align: center;
+        }
+   </style>
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <!-- <link rel="icon" href="{%static 'ico\favicon_io\android-chrome-192x192.png' %}"> -->
+</head>
+<body >
+    <!-- <h1 class="bg-body-tertiary">Ping Lookup</h1> -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" id="black"><!--bg-body-tertiary-->
+        <div class="container-fluid ">
+          <h1 class="navbar-brand " href="./reg"><img src="{%static 'ico\ping_img.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">Ping Lookup</h1>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./reg">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="../reg1">Append</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <h4>Category 1</h4>
+    <div class="container" >
+        {% for index, row in data.iterrows %}
+        <button  id="button{{ index }}" onmousedown="dragMouseDown(event)" draggable="true" data-name="{{ row.name }}" data-status="{{ row.status }}" data-em="{{ row.email_id }}" data-ip="{{ row.ip_address }}" {% if row.status == "UP" %}class="btn bttn green"{% else %}class="btn bttn red"{% endif %}>
+            {{ row.name }}          
+        </button>        
+          {% endfor %}
+    </div>      
+    <h2>Category 2</h2>
+    <div class="container container1">
+        <br>
+        <!-- {% for index, row in data.iterrows %}
+        <button  id="button{{ index }}" onmousedown="dragMouseDown(event)" draggable="true" data-name="{{ row.name }}" data-status="{{ row.status }}" data-em="{{ row.email_id }}" data-ip="{{ row.ip_address }}" {% if row.status == "UP" %}class="btn bttn green"{% else %}class="btn bttn red"{% endif %}>
+            {{ row.name }}          
+        </button>        
+          {% endfor %} -->
+    </div>
+    <hr>
+    <h4>Category 3</h4>
+    <div class="container container3">
+        <!-- <hr> -->
+        
+        <!-- {% for index, row in data.iterrows %}
+        <button id="button{{ index }}" onmousedown="dragMouseDown(event)" draggable="true" data-name="{{ row.name }}" data-status="{{ row.status }}" data-em="{{ row.email_id }}" data-ip="{{ row.ip_address }}" {% if row.status == "UP" %}class="btn bttn green"{% else %}class="btn bttn red"{% endif %}>
+            {{ row.name }}          
+        </button>        
+          {% endfor %} -->
+    </div>
+    <h3>Category 4</h3>
+    <div class="container container2"><br>
+        <!-- {% for index, row in data.iterrows %}
+        <button  id="button{{ index }}" onmousedown="dragMouseDown(event)" draggable="true" data-name="{{ row.name }}" data-status="{{ row.status }}" data-em="{{ row.email_id }}" data-ip="{{ row.ip_address }}" {% if row.status == "UP" %}class="btn bttn green"{% else %}class="btn bttn red"{% endif %}>
+            {{ row.name }}          
+        </button>        
+          {% endfor %} -->
+    </div>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+    <br>
+        <!-- <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>IP Address</th>
+                <th>Email ID</th>
+                <th>Link for Log</th>
+                <th>Status</th>
+            </tr>
+            {% for index, row in data.iterrows %}
+            <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.ip_address }}</td>
+                <td>{{ row.email_id }}</td>
+                <td>{{ row.link_for_log }}</td>
+                <td>{{ row.status }}</td>
+                <td>{{ row.Down_Time }}</td>
+            </tr>
+            {% endfor %}
+        </table> -->
+        <br>
+        <br>
+        <br>
+
+        <form class="hidden" id="emailForm" action="mailto:saivikramn2003@gmail.com?subject=%20Ping%20Alert" method="post" enctype="text/plain">
+            <input type="text" name="PING ALERT" value="Your IP Address is DOWN"><br>
+            <input type="submit" name="">
+        </form>
+        
+        <script>
+            function toggleForm(name,em,status) {
+                console.log(`Toggling form for ${name} with email ${em}`);
+                const form = document.getElementById('emailForm');
+        
+                // Update the subject directly in the action attribute
+                form.action = `mailto:${em}?cc=saivikramn2003@gmail.com,saivikraman.gk2021@vitstudent.ac.in&subject=Ping%20Alert%20for%20${name}`;
+    
+        
+                form.classList.toggle('hidden');
+        
+                // Prevent form submission
+                event.preventDefault();
+            }
+        
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const em = button.getAttribute('data-em');
+                    const status = button.getAttribute('data-status');
+                    const name = button.getAttribute('data-name');
+                    console.log(name+" "+em+""+status);
+                    if(status=="Timeout")
+                    {
+                        toggleForm(name,em,status);
+                    }
+                    else if(status=="Down")
+                    {
+                        toggleForm(name,em,status);
+                    }
+                    // Prevent form submission
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <script>
+        let savedPositions = JSON.parse(localStorage.getItem('savedPositions')) || {};
+
+        // Function to set initial positions of buttons
+        function setInitialButtonPositions() {
+            Object.keys(savedPositions).forEach(buttonId => {
+                const { containerIndex, position } = savedPositions[buttonId];
+                const container = document.querySelectorAll('.container')[containerIndex];
+                const button = document.getElementById(buttonId);
+
+                if (container && button) {
+                    container.insertBefore(button, container.children[position]);
+                }
+            });
+        }
+
+        // Call this function to set initial button positions
+        setInitialButtonPositions();
+
+        const draggables = document.querySelectorAll('.btn');
+        const containers = document.querySelectorAll('.container');
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', () => {
+                draggable.classList.add('dragging');
+            });
+
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('dragging');
+
+                // Update and save the new position to local storage
+                savedPositions[draggable.id] = {
+                    containerIndex: Array.from(containers).indexOf(draggable.parentElement),
+                    position: Array.from(draggable.parentElement.children).indexOf(draggable)
+                };
+
+                localStorage.setItem('savedPositions', JSON.stringify(savedPositions));
+            });
+        });
+
+        containers.forEach(container => {
+            container.addEventListener('dragover', e => {
+                e.preventDefault();
+                const afterElement = getDragAfterElement(container, e.clientY);
+                const draggable = document.querySelector('.dragging');
+                if (afterElement == null) {
+                    container.appendChild(draggable);
+                } else {
+                    container.insertBefore(draggable, afterElement);
+                }
+            });
+        });
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.btn:not(.dragging)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+        </script>
+</body>
+</html>

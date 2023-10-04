@@ -1,0 +1,4 @@
+name,ip_address,email_id,link_for_log,status
+sai,192.168.190.128,sai.vicky@gmail.com,./link_for_log/sai,Timeout
+kanishk,192.168.90.130,kanishk.kr@gmail.com,./link_for_log/kanishk,Timeout
+vikram,192.128.90.130,vicky.sai@gmail.com	, ./link_for_log/vicky,Timeout
